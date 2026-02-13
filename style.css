@@ -1,18 +1,21 @@
-*{
+* {
     padding: 0;
     margin: 0;
     box-sizing: border-box;
 }
 
-a{
+a {
     text-decoration: none;
     color: inherit;
 }
-ul,ol,li{
+
+ul,
+ol,
+li {
     list-style: none;
 }
 
-body{
+body {
     font-family: "Roboto", sans-serif;
     font-optical-sizing: auto;
     font-weight: 500;
@@ -20,14 +23,15 @@ body{
     font-variation-settings: "wdth" 100;
 }
 
-header{
+header {
     background-color: #3347B0;
     display: flex;
     justify-content: space-between;
     padding: 2vh 4vw;
 }
 
-header div, header button{
+header div,
+header button {
     display: flex;
     align-items: center;
     gap: .5vw;
@@ -37,43 +41,43 @@ header div, header button{
     border: none;
 }
 
-header button{
+header button {
     cursor: pointer;
 }
 
-header h1{
+header h1 {
     width: 110px;
 }
 
-header h2{
+header h2 {
     font-size: 30px;
 }
 
-main .section-cursos{
+main .section-cursos {
     display: flex;
     align-items: center;
     justify-content: space-around;
     padding: 10vh 3vw;
 }
 
-main aside{
+main aside {
     display: flex;
     flex-direction: column;
     align-items: center;
     gap: 10vh;
 }
 
-main aside h2{
+main aside h2 {
     color: #353535;
     font-size: 50px;
     width: 400px;
 }
 
-main aside span{
+main aside span {
     color: #3347B0
 }
 
-main nav{
+main nav {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -81,7 +85,7 @@ main nav{
     width: 25%;
 }
 
-main nav div{
+main nav div {
     display: flex;
     background-color: #3347B0;
     color: white;
@@ -96,16 +100,16 @@ main nav div{
     cursor: pointer;
 }
 
-main nav div:hover{
+main nav div:hover {
     background-color: #4d67eb;
     transition: .5s;
 }
 
-main nav div h2{
+main nav div h2 {
     width: fit-content;
 }
 
-footer{
+footer {
     background-color: #3347B0;
     display: flex;
     justify-content: space-between;
@@ -116,24 +120,24 @@ footer{
     font-weight: 400;
 }
 
-footer ul{
+footer ul {
     display: flex;
     flex-direction: column;
     gap: 1vw;
 }
 
-footer ul li{
+footer ul li {
     display: flex;
     align-items: center;
     gap: 1vw;
 }
 
-footer nav{
+footer nav {
     display: flex;
     gap: 2vw;
 }
 
-footer nav div{
+footer nav div {
     padding: 0;
     border: 2px solid white;
     border-radius: 100%;
@@ -143,7 +147,7 @@ footer nav div{
     height: 50px;
 }
 
-footer nav div img{
+footer nav div img {
     width: auto;
     height: auto;
 }
@@ -151,7 +155,7 @@ footer nav div img{
 
 /* -------- Section Alunos ------------- */
 
-.section-alunos{
+.section-alunos {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -159,15 +163,15 @@ footer nav div img{
     padding-top: 4vh;
 }
 
-.section-alunos .curso-nome{
+.section-alunos .curso-nome {
     font-size: 60px;
 }
 
-.curso-nome{
+.curso-nome {
     color: #3347B0;
 }
 
-.container-alunos{
+.container-alunos {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
@@ -175,7 +179,7 @@ footer nav div img{
     padding: 5vh 5vw;
 }
 
-.container-alunos div{
+.container-alunos div {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -189,10 +193,86 @@ footer nav div img{
     border-radius: 12px;
 }
 
-.container-alunos div h2{
+.container-alunos div h2 {
     width: 200px;
 }
 
-.container-alunos div img{
+.container-alunos div img {
     border-radius: 100%;
+}
+
+
+/* -------- Section Info Aluno ------------- */
+
+.section-info-aluno {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    padding: 10.5vh 4vw;
+}
+
+.section-info-aluno .aluno {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 5vh;
+    width: 30%;
+    color: #3347B0;
+    padding: 5vh 3vw;
+    text-align: center;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.4), 0 6px 20px 0 rgba(0, 0, 0, 0.39);
+    border-radius: 3px;
+    height: auto;
+}
+
+.section-info-aluno .aluno img {
+    border-radius: 100%;
+}
+
+.section-info-aluno .desempenho {
+    display: flex;
+    justify-content: center;
+    gap: 2vw;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.4), 0 6px 20px 0 rgba(0, 0, 0, 0.39);
+    border-radius: 3px;
+    padding: 11vh 2vw;
+    width: 30%;
+    height: auto;
+}
+
+.section-info-aluno .desempenho li {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1vh;
+}
+
+.barra {
+    width: 12px;
+    height: 200px;
+    background-color: #f0f2f5;
+    position: relative;
+    display: flex;
+    flex-direction: column-reverse;
+}
+
+.preenchimento {
+    width: 100%;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+}
+
+.azul {
+    background-color: #3347B0;
+    box-shadow: 0 0 15px rgba(59, 91, 219, 0.4);
+}
+
+.vermelho {
+    background-color: #C11010;
+    box-shadow: 0 0 15px rgba(201, 42, 42, 0.4);
+}
+
+.amarelo {
+    background-color: #E5B657;
+    box-shadow: 0 0 15px rgba(252, 196, 25, 0.4);
 }
