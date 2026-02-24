@@ -55,6 +55,9 @@ header h2 {
 
 main .section-cursos {
     display: flex;
+    flex-direction: row;
+    gap: 2vw;
+    flex-wrap: wrap;
     align-items: center;
     justify-content: space-around;
     padding: 10vh 3vw;

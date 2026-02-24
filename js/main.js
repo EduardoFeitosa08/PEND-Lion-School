@@ -3,6 +3,7 @@
 import { buscarAlunoPorId, buscarAlunosCurso } from "./alunos.js"
 
 const main = document.querySelector('main')
+const btnSair = document.getElementById('btn_sair')
 
 function construirSectionCursos() {
     const sectionCursos = document.createElement('section')
@@ -70,6 +71,10 @@ async function construirSectionAlunos(cursoEscolhido) {
         imgAluno.src = aluno.foto
         divAluno.append(imgAluno, h2NomeAluno)
         divContainer.append(divAluno)
+
+        divAluno.addEventListener('click', async () => {
+            await construirSectionInfoAluno(aluno.id)
+        })
     })
 
     if (cursoEscolhido === 1) {
@@ -86,6 +91,7 @@ async function construirSectionAlunos(cursoEscolhido) {
 }
 
 async function construirSectionInfoAluno(alunoEscolhido) {
+    const sectionInfoAluno = document.createElement('section')
     const divAluno = document.createElement('div')
     const imgAluno = document.createElement('img')
     const h2Nome = document.createElement('h2')
@@ -93,6 +99,11 @@ async function construirSectionInfoAluno(alunoEscolhido) {
     const ulDesempenho = document.createElement('ul')
 
     const aluno = await buscarAlunoPorId(alunoEscolhido)
+
+    imgAluno.src = aluno.foto
+    h2Nome.textContent = aluno.nome
+    divAluno.append(imgAluno, h2Nome)
+    divAluno.classList.add('aluno')
 
     aluno.desempenho.forEach(materia => {
         const liMateria = document.createElement('li')
@@ -126,8 +137,17 @@ async function construirSectionInfoAluno(alunoEscolhido) {
         }
     })
 
-
+    ulDesempenho.classList.add('desempenho')
+    sectionInfoAluno.append(divAluno, ulDesempenho)
+    sectionInfoAluno.classList.add('section-info-aluno')
+    main.textContent = ''
+    main.append(sectionInfoAluno)
 }
+
+btnSair.addEventListener('click', function(){
+    main.textContent = ''
+    construirSectionCursos()
+})
 
 window.onload = function () {
     construirSectionCursos()
