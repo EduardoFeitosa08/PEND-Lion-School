@@ -25,6 +25,9 @@ function construirSectionCursos() {
     const imgRedesIcon = document.createElement('img')
     const h2Redes = document.createElement('h2')
 
+    const imgVoltar = document.createElement('img')
+    const h2Voltar = document.createElement('h2')
+
     spanCurso.textContent = 'curso'
     h2Escolha.append('Escolha um ', spanCurso, ' para gerenciar')
     imgDevices.src = '../img/devices.svg'
@@ -54,97 +57,115 @@ function construirSectionCursos() {
         await construirSectionAlunos(2)
 
     })
+
+    imgVoltar.src = '../img/voltar-image.svg'
+    h2Voltar.textContent = 'Sair'
+    btnSair.textContent = ''
+    btnSair.append(imgVoltar, h2Voltar)
 }
 
 async function construirSectionAlunos(cursoEscolhido) {
-    const sectionAlunos = document.createElement('section')
-    const h2CursoNome = document.createElement('h2')
-    const divContainer = document.createElement('div')
+    try {
+        const sectionAlunos = document.createElement('section')
+        const h2CursoNome = document.createElement('h2')
+        const divContainer = document.createElement('div')
+        const imgVoltar = document.createElement('img')
+        const h2Voltar = document.createElement('h2')
 
-    const alunos = await buscarAlunosCurso(cursoEscolhido)
-    alunos.forEach(aluno => {
-        const divAluno = document.createElement('div')
-        const imgAluno = document.createElement('img')
-        const h2NomeAluno = document.createElement('h2')
+        const alunos = await buscarAlunosCurso(cursoEscolhido)
+        alunos.forEach(aluno => {
+            const divAluno = document.createElement('div')
+            const imgAluno = document.createElement('img')
+            const h2NomeAluno = document.createElement('h2')
 
-        h2NomeAluno.textContent = aluno.nome
-        imgAluno.src = aluno.foto
-        divAluno.append(imgAluno, h2NomeAluno)
-        divContainer.append(divAluno)
+            h2NomeAluno.textContent = aluno.nome
+            imgAluno.src = aluno.foto
+            divAluno.append(imgAluno, h2NomeAluno)
+            divContainer.append(divAluno)
 
-        divAluno.addEventListener('click', async () => {
-            await construirSectionInfoAluno(aluno.id)
+            divAluno.addEventListener('click', async () => {
+                await construirSectionInfoAluno(aluno.id)
+            })
         })
-    })
 
-    if (cursoEscolhido === 1) {
-        h2CursoNome.textContent = 'Desenvolvimento de Sistemas'
-    } else if (cursoEscolhido === 2) {
-        h2CursoNome.textContent = 'Redes'
+        if (cursoEscolhido === 1) {
+            h2CursoNome.textContent = 'Desenvolvimento de Sistemas'
+            h2CursoNome.classList.add('curso-nome')
+        } else if (cursoEscolhido === 2) {
+            h2CursoNome.textContent = 'Redes'
+            h2CursoNome.classList.add('curso-nome')
+        }
+
+        imgVoltar.src = '../img/voltar-image.svg'
+        h2Voltar.textContent = 'Voltar'
+        btnSair.textContent = ''
+        btnSair.append(imgVoltar, h2Voltar)
+
+        divContainer.classList.add('container-alunos')
+        sectionAlunos.classList.add('section-alunos')
+        sectionAlunos.append(h2CursoNome, divContainer)
+        main.textContent = ''
+        main.append(sectionAlunos)
+    } catch (error) {
+        alert('Não foi possivel encontrar o curso escolhido')
     }
-
-    divContainer.classList.add('container-alunos')
-    sectionAlunos.classList.add('section-alunos')
-    sectionAlunos.append(h2CursoNome, divContainer)
-    main.textContent = ''
-    main.append(sectionAlunos)
 }
 
 async function construirSectionInfoAluno(alunoEscolhido) {
-    const sectionInfoAluno = document.createElement('section')
-    const divAluno = document.createElement('div')
-    const imgAluno = document.createElement('img')
-    const h2Nome = document.createElement('h2')
+    try {
+        const sectionInfoAluno = document.createElement('section')
+        const divAluno = document.createElement('div')
+        const imgAluno = document.createElement('img')
+        const h2Nome = document.createElement('h2')
 
-    const ulDesempenho = document.createElement('ul')
+        const ulDesempenho = document.createElement('ul')
 
-    const aluno = await buscarAlunoPorId(alunoEscolhido)
+        const aluno = await buscarAlunoPorId(alunoEscolhido)
 
-    imgAluno.src = aluno.foto
-    h2Nome.textContent = aluno.nome
-    divAluno.append(imgAluno, h2Nome)
-    divAluno.classList.add('aluno')
+        imgAluno.src = aluno.foto
+        h2Nome.textContent = aluno.nome
+        divAluno.append(imgAluno, h2Nome)
+        divAluno.classList.add('aluno')
 
-    aluno.desempenho.forEach(materia => {
-        const liMateria = document.createElement('li')
-        const pDesempenho = document.createElement('p')
-        const divBarra = document.createElement('div')
-        const divPreenchimento = document.createElement('div')
-        const pMateria = document.createElement('p')
+        aluno.desempenho.forEach(materia => {
+            const liMateria = document.createElement('li')
+            const pDesempenho = document.createElement('p')
+            const divBarra = document.createElement('div')
+            const divPreenchimento = document.createElement('div')
+            const pMateria = document.createElement('p')
 
-        pDesempenho.textContent = materia.valor
-        pMateria.textContent = materia.categoria
-        
-        divPreenchimento.style.height = `${materia.valor}%`
-        divBarra.append(divPreenchimento)
-        
-        liMateria.append(pDesempenho, divBarra, pMateria)
-        ulDesempenho.append(liMateria)
+            pDesempenho.textContent = materia.valor
+            pMateria.textContent = materia.categoria
 
-        divBarra.classList.add('barra')
-        divPreenchimento.classList.add('preenchimento')
-        
-        if(materia.categoria == 'SGP'){
-            divPreenchimento.classList.add('azul')
-        }else if(materia.categoria ==  'IP'){
-            divPreenchimento.classList.add('vermelho')
-        }else if(materia.categoria == 'LING'){
-            divPreenchimento.classList.add('amarelo')
-        }else if(materia.categoria == 'BD'){
-            divPreenchimento.classList.add('azul')
-        }else if(materia.categoria == 'PPE'){
-            divPreenchimento.classList.add('azul')
-        }
-    })
+            divPreenchimento.style.height = `${materia.valor}%`
+            divBarra.append(divPreenchimento)
 
-    ulDesempenho.classList.add('desempenho')
-    sectionInfoAluno.append(divAluno, ulDesempenho)
-    sectionInfoAluno.classList.add('section-info-aluno')
-    main.textContent = ''
-    main.append(sectionInfoAluno)
+            liMateria.append(pDesempenho, divBarra, pMateria)
+            ulDesempenho.append(liMateria)
+
+            divBarra.classList.add('barra')
+            divPreenchimento.classList.add('preenchimento')
+
+            if (materia.valor >= 70) {
+                divPreenchimento.classList.add('azul')
+            } else if (materia.valor < 50) {
+                divPreenchimento.classList.add('vermelho')
+            } else if (materia.categoria >= 50) {
+                divPreenchimento.classList.add('amarelo')
+            }
+        })
+
+        ulDesempenho.classList.add('desempenho')
+        sectionInfoAluno.append(divAluno, ulDesempenho)
+        sectionInfoAluno.classList.add('section-info-aluno')
+        main.textContent = ''
+        main.append(sectionInfoAluno)
+    } catch (error) {
+        alert('Não foi possivel encontrar o desempenho do Aluno selecionado')
+    }
 }
 
-btnSair.addEventListener('click', function(){
+btnSair.addEventListener('click', function () {
     main.textContent = ''
     construirSectionCursos()
 })
